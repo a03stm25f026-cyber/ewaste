@@ -63,6 +63,26 @@ const keys = {};
 window.addEventListener('keydown', (e) => { keys[e.key] = true; });
 window.addEventListener('keyup', (e) => { keys[e.key] = false; });
 
+//--- KAWALAN SENTUHAN (UNTUK TELEFON BIMBIT)
+canvas.addEventListener('touchmove', function(e) {
+  e.preventDefault(); // Mengelakkan skrin telefon daripada ter-scroll
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+
+  // Mendapatkan koordinat sentuhan jari pada skrin
+  const touchX = (e.touches[0].clientX - rect.left) * scaleX;
+  const touchY = (e.touches[0].clientY - rect.top) * scaleY;
+
+  // Menggerakkan robot mengikut kedudukan jari
+  player.x = touchX - player.width / 2;
+  player.y = touchY - player.height / 2;
+
+  // Memastikan robot tidak keluar dari kawasan permainan
+  player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
+  player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
+}, { passive: false });
+
 // SENARAI ITEM JATUH
 const itemTypes = [
   { key: 'fon', score: 10, lives: 0, speed: 3.5, rarity: 0.25, isSlow: false },
