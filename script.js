@@ -63,6 +63,37 @@ const keys = {};
 window.addEventListener('keydown', (e) => { keys[e.key] = true; });
 window.addEventListener('keyup', (e) => { keys[e.key] = false; });
 
+//--- LOGIK KAWALAN D-PAD MAYA
+function bindDpadButton(btnId, keyName) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+
+  const press = (e) => {
+    e.preventDefault();
+    keys[keyName] = true;
+  };
+
+  const release = (e) => {
+    e.preventDefault();
+    keys[keyName] = false;
+  };
+
+  // Sentuhan skrin (Telefon)
+  btn.addEventListener('touchstart', press, { passive: false });
+  btn.addEventListener('touchend', release, { passive: false });
+
+  // Klik tetikus (Komputer / Semakan)
+  btn.addEventListener('mousedown', press);
+  btn.addEventListener('mouseup', release);
+  btn.addEventListener('mouseleave', release);
+}
+
+// Hubungkan butang D-Pad dengan kekunci anak panah
+bindDpadButton('btn-up', 'ArrowUp');
+bindDpadButton('btn-down', 'ArrowDown');
+bindDpadButton('btn-left', 'ArrowLeft');
+bindDpadButton('btn-right', 'ArrowRight');
+
 //--- KAWALAN SENTUHAN (UNTUK TELEFON BIMBIT)
 canvas.addEventListener('touchmove', function(e) {
   e.preventDefault(); // Mengelakkan skrin telefon daripada ter-scroll
