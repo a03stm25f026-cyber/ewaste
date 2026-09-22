@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game SDG 12: Kutip Sisa E-Waste</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <!-- UI Papan Skor dan Masa -->
+    <div id="ui-panel">
+      <div>Masa: <span id="timer">60</span>s</div>
+      <div>Skor: <span id="score">0</span></div>
+      <div>Nyawa: <span id="lives">3</span></div>
+    </div>
+
+    <!-- Kanvas Utama -->
+    <canvas id="gameCanvas" width="450" height="800"></canvas>
+
+    <!-- Skrin Game Over -->
+    <div id="game-over-screen" class="hidden">
+      <div class="card-container">
+        <h2>GAME OVER</h2>
+        <p id="final-reason"></p>
+        <p>Skor Akhir: <span id="final-score">0</span></p>
+        <form id="leaderboard-form">
+          <input type="text" id="player-name" placeholder="Masukkan Nama Anda" required />
+          <button type="submit" id="submit-btn">Hantar Skor</button>
+        </form>
+        <button onclick="location.reload()" class="restart-btn">Main Semula</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
