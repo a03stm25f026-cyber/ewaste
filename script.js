@@ -89,8 +89,6 @@ function bindDpadButton(btnId, keyName) {
 }
 
 // Hubungkan butang D-Pad dengan kekunci anak panah
-bindDpadButton('btn-up', 'ArrowUp');
-bindDpadButton('btn-down', 'ArrowDown');
 bindDpadButton('btn-left', 'ArrowLeft');
 bindDpadButton('btn-right', 'ArrowRight');
 
